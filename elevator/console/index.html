@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page with Console</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #console {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 150px;
+            background: black;
+            color: green;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column-reverse;
+            cursor: move;
+        }
+        #openConsoleButton {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            display: none;
+            background: black;
+            color: green;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        #toggleConsoleButton, #clearConsoleButton {
+            position: fixed;
+            top: 0;
+            background: black;
+            color: green;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        #toggleConsoleButton {
+            left: 0;
+        }
+        #clearConsoleButton {
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleConsoleButton">Click Me</button>
+    <button id="clearConsoleButton">Clear Console</button>
+    <div id="console"></div>
+    <button id="openConsoleButton">Open Console</button>
+
+    <script>
+        let consoleElement = document.getElementById('console');
+        let openConsoleButton = document.getElementById('openConsoleButton');
+        let toggleConsoleButton = document.getElementById('toggleConsoleButton');
+        let clearConsoleButton = document.getElementById('clearConsoleButton');
+        let clickCount = 0;
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        // Function to add a line to the console
+        function addLine(text) {
+            let line = document.createElement('div');
+            line.textContent = text;
+            consoleElement.appendChild(line);
+        }
+
+        // Add a line every 10 seconds
+        setInterval(() => {
+            addLine('>10 seconds has passed');
+        }, 10000);
+
+        // Add a line when the button is clicked
+        toggleConsoleButton.addEventListener('click', () => {
+            clickCount++;
+            addLine(`>the button is clicked ${clickCount} ${clickCount === 1 ? 'time' : 'times'}`);
+        });
+
+        // Clear the console
+        clearConsoleButton.addEventListener('click', () => {
+            consoleElement.innerHTML = '';
+        });
+
+        // Close the console
+        consoleElement.addEventListener('dblclick', () => {
+            consoleElement.style.display = 'none';
+            openConsoleButton.style.display = 'block';
+        });
+
+        // Reopen the console
+        openConsoleButton.addEventListener('click', () => {
+            consoleElement.style.display = 'block';
+            openConsoleButton.style.display = 'none';
+        });
+
+        // Handle dragging
+        consoleElement.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - consoleElement.getBoundingClientRect().left;
+            offsetY = e.clientY - consoleElement.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                consoleElement.style.left = `${e.clientX - offsetX}px`;
+                consoleElement.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    </script>
+</body>
+</html>

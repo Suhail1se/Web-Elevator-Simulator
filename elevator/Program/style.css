@@ -1,0 +1,72 @@
+.elevatorOfRoof5, .elevatorOfRoof4, .elevatorOfRoof3, .elevatorOfRoof2, .elevatorOfRoof1, .elevatorOfRoof0 {
+    color: white;
+    background-color: black;
+    height: 200px;
+    width: 100px;
+    display: none;
+}
+
+.roof5, .roof4, .roof3, .roof2, .roof1, .roof0 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+    text-align: center; /* Centers text inside each roof container */
+    margin-bottom: 20px; /* Adds space between each roof container */
+}
+
+.roof5 hr, .roof4 hr, .roof3 hr, .roof2 hr, .roof1 hr, .roof0 hr {
+    width: 80%; /* Adjust the width of the horizontal line */
+    margin: 10px auto; /* Centers the horizontal line */
+}
+
+#callElevator0, #callElevator1, #callElevator2, #callElevator3, #callElevator4, #callElevator5 {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 8px;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.floorButton {
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+}
+
+.floorButton:hover {
+    background-color: #ddd;
+}
+#cancelButton{
+    color: white;
+    background-color: red;
+}
+
+/* Countdown styles */
+#countdown {
+    font-size: 14px;
+    color: red;
+    margin-left: 10px;
+}
